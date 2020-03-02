@@ -9,22 +9,10 @@ function generateSignature(secrets, meetingData) {
     return signature
 }
 
-const temp = {
-    body: {
-        meetingData: {
-            meetingNumber: '2859761343',
-            role: 0
-        }
-    }
-}
-
 export async function handler(event, context) {
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
     }
-
-    // console.log(event.body)
-    // console.log(context)
 
     try {        
 
@@ -33,10 +21,10 @@ export async function handler(event, context) {
             body: JSON.stringify({ signature: generateSignature(process.env, event.body) })
         }
     } catch (err) {
-        console.log(err) // output to netlify function log
+        console.log(err)
         return {
             statusCode: 500,
-            body: JSON.stringify({ msg: err.message }) // Could be a custom message or object i.e. JSON.stringify(err)
+            body: JSON.stringify({ msg: err.message })
         }
     }
 }

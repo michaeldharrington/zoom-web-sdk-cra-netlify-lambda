@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
+import Zoom from './Zoom';
 
 class App extends Component {
   state = { 
     loading: false, 
     signature: '',
-    // meetingLaunched: false,
-    // meetingNumber: "2859761343",
-    // leaveUrl: "#",
-    // userName: "",
-    // userEmail: "",
-    // passWord: "",
-    // role: 0,
+    meetingLaunched: false,
+    leaveUrl: "#",
+    userName: "",
+    userEmail: "",
+    passWord: "",
+    role: 0,
     meetingData: {
       meetingNumber: "2859761343",
       role: 0
@@ -34,6 +34,7 @@ class App extends Component {
     const { loading, signature, meetingData } = this.state
     return (
       <div className="App">
+        <Zoom />
         <p>Signature: <br/>{signature}</p>
         <button onClick={this.launchMeeting(meetingData)}>{loading ? "Loading..." : "Get Signature"}</button>
       </div>
